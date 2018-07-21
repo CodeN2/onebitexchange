@@ -4,7 +4,7 @@
     border: 0;
 
     .card-header{
-      background-color: #878d99;
+      background-color: #03a9f4;
       border-radius: 0;
       color: white;
       font-weight: 700;
@@ -15,14 +15,8 @@
       padding: 20px;
 
       .title{
-        color: #878d99;
+        color: #78909c;
         font-weight: 700;
-      }
-
-      .btn-exchange{
-        background-color: #5bc0de;
-        border-color: #5bc0de;
-        border-radius: 0;
       }
     }
   }
@@ -58,4 +52,9 @@
   .btn-exchange {
     font-size: 20px;
   }
+}
+
+.exchange_invert_icon{
+  font-size: 45px;
+  color: #4fc3f7;
 }
