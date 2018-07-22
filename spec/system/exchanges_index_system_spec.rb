@@ -13,13 +13,4 @@ RSpec.describe "Exchange Currency Process", :type => :system, js: true do
     # save_and_open_page
     # expect(page).to have_content("value")
   end
-
-  it "exchange value with bitcoin" do
-    visit '/'
-    within("#exchange_form") do
-      select('BTC', from: 'source_currency')
-      select('USD', from: 'target_currency')
-      fill_in 'amount', with: '10'
-    end
-  end
 end
