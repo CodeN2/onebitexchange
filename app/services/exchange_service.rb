@@ -10,6 +10,40 @@ class ExchangeService
 
  
   def perform
+    if [@source_currency, @target_currency].include? 'BTC'
+      bitCoinCurrency()
+    else
+      normalCurrency()
+    end
+  end
+
+
+  private
+
+  def bitCoinCurrency
+    if @source_currency.eql? 'BTC'
+      value = requestApiBitCoin(@target_currency)
+      
+      value * @amount
+    elsif @target_currency.eql? 'BTC'
+      value = requestApiBitCoin(@source_currency)
+
+      @amount / value
+    end 
+  end
+
+  def requestApiBitCoin(currency)
+    begin
+      url = "https://api.coindesk.com/v1/bpi/currentprice/#{currency}.json"
+      res = RestClient.get url
+
+      value = JSON.parse(res.body)['bpi'][currency]['rate_float'].to_f
+    rescue RestClient::ExceptionWithResponse => e
+      e.response
+    end
+  end
+
+  def normalCurrency
     begin
       exchange_api_url = Rails.application.credentials[Rails.env.to_sym][:currency_api_url]
       exchange_api_key = Rails.application.credentials[Rails.env.to_sym][:currency_api_key]

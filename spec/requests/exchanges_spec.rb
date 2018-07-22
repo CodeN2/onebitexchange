@@ -23,5 +23,14 @@ RSpec.describe 'Exchanges', type: :request do
                       }
       expect(response).to have_http_status(200)
     end
+
+    it 'returns http success with bitcoin' do
+      get '/convert', params: {
+                        source_currency: "BTC",
+                        target_currency: "BRL",
+                        amount: @amount
+                      }
+      expect(response).to have_http_status(200)
+    end
   end
 end
